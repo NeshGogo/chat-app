@@ -1,5 +1,6 @@
 ﻿using ChatApi.Data;
 using ChatApi.Entities;
+using ChatApi.GraphQL.Chats;
 using ChatApi.GraphQL.Users;
 
 namespace ChatApi.GraphQL
@@ -19,6 +20,18 @@ namespace ChatApi.GraphQL
             context.Add(user);
             await context.SaveChangesAsync();
             return new AddUserPayLoad(user);
+        }
+
+        public async Task<AddChatPayLoad> AddChatAsync(AddChatInput input, [ScopedService] AppDbContext context)
+        {
+            var chat = new Chat
+            {
+                Name = input.Name,
+                Users = new List<User>() { input.Users },
+            };
+            context.Add(chat);
+            await context.SaveChangesAsync();
+            return new AddChatPayLoad(chat);
         }
     }
 }

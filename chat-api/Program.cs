@@ -1,5 +1,6 @@
 using ChatApi.Data;
 using ChatApi.GraphQL;
+using ChatApi.GraphQL.Chats;
 using ChatApi.GraphQL.Users;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +15,7 @@ builder.Services.AddGraphQLServer()
     .AddQueryType<Query>()
     .AddMutationType<Mutations>()
     .AddType<UserType>()
+    .AddType<ChatType>()
     .AddFiltering()
     .AddSorting();
     //.AddProjections();
