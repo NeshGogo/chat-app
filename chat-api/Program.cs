@@ -35,6 +35,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+PreDb.PrePoupulation(app, app.Environment.IsProduction());
+
 // --> GraphQL
 app.MapGraphQL();
 
