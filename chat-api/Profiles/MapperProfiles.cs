@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ChatApi.Dtos;
 using ChatApi.Entities;
+using ChatApi.GraphQL.Messages;
 using ChatApi.GraphQL.Users;
 
 namespace ChatApi.Profiles
@@ -18,6 +19,7 @@ namespace ChatApi.Profiles
 
             // --> Message
             CreateMap<Message, MessageDto>();
+            CreateMap<AddMessageInput, Message>();
         }
     }
 }
