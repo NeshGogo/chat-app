@@ -30,15 +30,15 @@ namespace ChatApi.GraphQL
         [UseDbContext(typeof(AppDbContext))]
         public async Task<AddChatPayLoad> AddChatAsync(AddChatInput input, [ScopedService] AppDbContext context)
         {
-            var users = context.Set<User>().Where(p => input.UserIds.Contains(p.Id.ToString()));
+            var users = context.Set<User>().Where(p => input.UserIds.Contains(p.Id.ToString())).ToList();
            
             if (users.Count() != input.UserIds.Count)
                 throw new ErrorMessageException("One or more of the users send do not exists.");
-            
+            var newUsers = new List<User>(users);
             var chat = new Chat
             {
                 Name = input.Name,
-                Users = users,
+                Users = newUsers,
             };
 
             chat.Created("System");
