@@ -1,6 +1,6 @@
-﻿using ChatApi.Entities;
+﻿using ChatApi.Dtos;
 
 namespace ChatApi.GraphQL.Chats
 {
-    public record AddChatPayLoad(Chat chat);
+    public record AddChatPayLoad(ChatDto chat);
 }

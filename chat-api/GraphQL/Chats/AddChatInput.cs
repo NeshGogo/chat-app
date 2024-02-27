@@ -5,6 +5,6 @@ namespace ChatApi.GraphQL.Chats
     public record AddChatInput
     (
         string? Name,
-        User Users
+        List<string> UserIds
     );
 }

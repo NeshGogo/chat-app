@@ -12,6 +12,12 @@ namespace ChatApi.Profiles
             // --> User
             CreateMap<User, UserDto>();
             CreateMap<AddUserInput, User>();
+
+            // --> Chat
+            CreateMap<Chat, ChatDto>();
+
+            // --> Message
+            CreateMap<Message, MessageDto>();
         }
     }
 }

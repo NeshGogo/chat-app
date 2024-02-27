@@ -2,6 +2,7 @@
 using ChatApi.Data;
 using ChatApi.Dtos;
 using ChatApi.Entities;
+using ChatApi.Exceptions;
 using ChatApi.GraphQL.Chats;
 using ChatApi.GraphQL.Users;
 
@@ -29,15 +30,21 @@ namespace ChatApi.GraphQL
         [UseDbContext(typeof(AppDbContext))]
         public async Task<AddChatPayLoad> AddChatAsync(AddChatInput input, [ScopedService] AppDbContext context)
         {
+            var users = context.Set<User>().Where(p => input.UserIds.Contains(p.Id.ToString()));
+           
+            if (users.Count() != input.UserIds.Count)
+                throw new ErrorMessageException("One or more of the users send do not exists.");
+            
             var chat = new Chat
             {
                 Name = input.Name,
-                Users = new List<User>() { input.Users },
+                Users = users,
             };
+
             chat.Created("System");
             context.Add(chat);
             await context.SaveChangesAsync();
-            return new AddChatPayLoad(chat);
+            return new AddChatPayLoad(_mapper.Map<ChatDto>(chat));
         }
     }
 }

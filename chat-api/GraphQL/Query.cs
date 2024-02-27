@@ -26,9 +26,9 @@ namespace ChatApi.GraphQL
         [UseDbContext(typeof(AppDbContext))]
         [UseFiltering]
         [UseSorting]
-        public IQueryable<Chat> GetChats([ScopedService] AppDbContext context)
+        public IQueryable<ChatDto> GetChats([ScopedService] AppDbContext context)
         {
-            return context.Set<Chat>().Include(p => p.Users).Include(p => p.Messages).AsNoTracking();
+            return context.Set<Chat>().Include(p => p.Users).Include(p => p.Messages).Select(p => _mapper.Map<ChatDto>(p)).AsNoTracking();
         }
     }
 }
