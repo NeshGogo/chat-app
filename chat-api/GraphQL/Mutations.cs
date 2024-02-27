@@ -1,4 +1,6 @@
-﻿using ChatApi.Data;
+﻿using AutoMapper;
+using ChatApi.Data;
+using ChatApi.Dtos;
 using ChatApi.Entities;
 using ChatApi.GraphQL.Chats;
 using ChatApi.GraphQL.Users;
@@ -7,21 +9,21 @@ namespace ChatApi.GraphQL
 {
     public class Mutations
     {
+        private readonly IMapper _mapper;
+
+        public Mutations( IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
         [UseDbContext(typeof(AppDbContext))]
         public async Task<AddUserPayLoad> AddUserAsync(AddUserInput input, [ScopedService] AppDbContext context)
         {
-            var user = new User
-            {
-                Name = input.Name,
-                UserName = input.UserName,
-                Email = input.Email,
-                Phone = input.Phone,
-                PhonePrefix = input.PhonePrefix,
-            };
+            var user = _mapper.Map<User>(input);
             user.Created("System");
             context.Add(user);
             await context.SaveChangesAsync();
-            return new AddUserPayLoad(user);
+            return new AddUserPayLoad(_mapper.Map<UserDto>(user));
         }
 
         [UseDbContext(typeof(AppDbContext))]

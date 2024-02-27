@@ -12,6 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("ChatApi"));
 builder.Services.AddDbContextFactory<AppDbContext>(opt => opt.UseInMemoryDatabase("ChatApi"));
 
+// --> AutoMapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 // --> GraphQL
 builder.Services.AddGraphQLServer()
     .AddQueryType<Query>()
