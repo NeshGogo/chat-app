@@ -7,6 +7,7 @@ namespace ChatApi.GraphQL
 {
     public class Mutations
     {
+        [UseDbContext(typeof(AppDbContext))]
         public async Task<AddUserPayLoad> AddUserAsync(AddUserInput input, [ScopedService] AppDbContext context)
         {
             var user = new User
@@ -17,11 +18,13 @@ namespace ChatApi.GraphQL
                 Phone = input.Phone,
                 PhonePrefix = input.PhonePrefix,
             };
+            user.Created("System");
             context.Add(user);
             await context.SaveChangesAsync();
             return new AddUserPayLoad(user);
         }
 
+        [UseDbContext(typeof(AppDbContext))]
         public async Task<AddChatPayLoad> AddChatAsync(AddChatInput input, [ScopedService] AppDbContext context)
         {
             var chat = new Chat
@@ -29,6 +32,7 @@ namespace ChatApi.GraphQL
                 Name = input.Name,
                 Users = new List<User>() { input.Users },
             };
+            chat.Created("System");
             context.Add(chat);
             await context.SaveChangesAsync();
             return new AddChatPayLoad(chat);
