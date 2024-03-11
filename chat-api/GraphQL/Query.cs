@@ -2,6 +2,7 @@
 using ChatApi.Data;
 using ChatApi.Dtos;
 using ChatApi.Entities;
+using HotChocolate.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace ChatApi.GraphQL
@@ -18,6 +19,7 @@ namespace ChatApi.GraphQL
         [UseDbContext(typeof(AppDbContext))]
         [UseFiltering]
         [UseSorting]
+        [Authorize]
         public IQueryable<UserDto> GetUsers([ScopedService] AppDbContext context) 
         {
             return context.Set<User>().Select(p => _mapper.Map<UserDto>(p)).AsNoTracking();

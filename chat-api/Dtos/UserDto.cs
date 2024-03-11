@@ -1,4 +1,5 @@
-﻿namespace ChatApi.Dtos
+﻿
+namespace ChatApi.Dtos
 {
     public class UserDto : DtoBase
     {

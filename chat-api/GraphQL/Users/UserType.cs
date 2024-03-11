@@ -9,6 +9,7 @@ namespace ChatApi.GraphQL.Users
         protected override void Configure(IObjectTypeDescriptor<User> descriptor)
         {
             descriptor.Description("Represents any user");
+            descriptor.Authorize();
             descriptor.Field(p => p.Chats)
                 .ResolveWith<Resolvers>(p => p.GetChats(default!, default!))
                 .UseDbContext<AppDbContext>()
