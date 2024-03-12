@@ -2,6 +2,8 @@ using ChatApi.Data;
 using ChatApi.GraphQL;
 using ChatApi.GraphQL.Chats;
 using ChatApi.GraphQL.Users;
+using HotChocolate;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
