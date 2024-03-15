@@ -42,8 +42,10 @@ service.AddAuthentication(options =>
         options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
     })
+    .AddCookie("Cookie")
     .AddGoogle(googleOptions =>
     {
+        googleOptions.SignInScheme = "Cookie";
         googleOptions.ClientId = configuration["Authentication:Google:ClientId"]; ;
         googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
     });
@@ -52,6 +54,7 @@ service.AddAuthentication(options =>
 service.AddEndpointsApiExplorer();
 service.AddSwaggerGen();
 service.AddCors();
+service.AddControllers();
 
 var app = builder.Build();
 
@@ -73,5 +76,7 @@ PreDb.PrePoupulation(app, app.Environment.IsProduction());
 
 // --> GraphQL
 app.MapGraphQL();
+
+app.MapControllers();
 
 app.Run("http://localhost:5000");
