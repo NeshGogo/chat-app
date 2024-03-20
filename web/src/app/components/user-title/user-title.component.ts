@@ -9,6 +9,17 @@ import { AvatarComponent } from '../avatar/avatar.component';
     <app-avatar [initials]="initials"></app-avatar>
     <h3>{{name()}}</h3>
   `,
+  styles: `
+    :host{
+      display: flex;
+      align-items: center;
+      h3{
+        margin: 0;
+        margin-left:5px;
+        font-weight: 600;
+      }
+    }
+  `
 })
 export class UserTitleComponent {
   name = input<string>('');
