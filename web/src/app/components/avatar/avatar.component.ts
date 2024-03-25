@@ -6,17 +6,17 @@ import { Component, input } from '@angular/core';
   imports: [],
   template: `
   <div class="bg-primary">
-    <h1>{{initials()}}</h1>
+    <h2>{{initials()}}</h2>
   </div>`,
   styles: `
     div {
       max-height: 35px;
       max-width: 35px;
-      padding: 5px;
+      padding: 3px 6px;
       border-radius: 100%;
       text-align: center;
-      h1 {
-        line-height: 1.5;
+      h2 {
+        line-height: 1.8;
         color: white;
         text-transform: uppercase;
       }

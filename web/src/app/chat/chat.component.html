@@ -1,1 +1,29 @@
-<app-layout></app-layout>
+<mat-toolbar color="primary">
+  <span>{{ toolBarTitle() }}</span>
+  <span class="spacer"></span>
+  <button mat-icon-button aria-label="close icon">
+    <mat-icon class="icon" aria-hidden="false" aria-label="close icon"
+      >close</mat-icon
+    >
+  </button>
+</mat-toolbar>
+
+<div>
+  <div class="user-title">
+    <app-user-title name="Carlos Peralta"></app-user-title>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="user-title">
+    <app-user-title name="Juancho Sanchez"></app-user-title>
+  </div>
+
+  <mat-divider></mat-divider>
+  <div class="user-title">
+    <app-user-title name="Miguel Servantes"></app-user-title>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="user-title">
+    <app-user-title name="Gabriel Anastacio"></app-user-title>
+  </div>
+  <mat-divider></mat-divider>
+</div>
