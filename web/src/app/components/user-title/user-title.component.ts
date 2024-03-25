@@ -16,7 +16,7 @@ import { AvatarComponent } from '../avatar/avatar.component';
       h3{
         margin: 0;
         margin-left:5px;
-        font-weight: 600;
+        font-weight: 500;
       }
     }
   `
