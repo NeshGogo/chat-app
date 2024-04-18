@@ -27,3 +27,29 @@
   </div>
   <mat-divider></mat-divider>
 </div>
+
+<section class="p-2 chat">
+<div class="m2">
+  <div class="m-2">
+    <app-message userName="Rafael Pedro" content="Prueba de sistema..."></app-message>
+  </div>
+  
+  <div class="m-2">
+    <app-message userName="Rafael Pedro1" content="Prueba de sistema asdasas asdas as..."></app-message>
+  </div>
+  <div class="m-2">
+    <app-message userName="Rafael Pedro1" content="Prueba de sistema asdasas asdas as..."></app-message>
+  </div>
+</div>
+
+<form class="form">
+  <mat-form-field>
+    <textarea matInput #message placeholder="What do you want to say?"></textarea>
+    <button class="form-btn" matSuffix  align="end" mat-icon-button aria-label="close icon">
+      <mat-icon class="icon" color="primary" aria-hidden="false" aria-label="close icon"
+        >send</mat-icon
+      >
+    </button>
+  </mat-form-field>
+</form>
+</section>

@@ -8,7 +8,9 @@ import { MatCardModule } from '@angular/material/card';
   imports: [UserTitleComponent, MatCardModule],
   template: `
   <div>
-    <app-user-title [name]="userName()"></app-user-title>
+    <div class="mb-1">
+      <app-user-title [name]="userName()"></app-user-title>
+    </div>
     <mat-card>
       <mat-card-content>{{content()}}</mat-card-content>
     </mat-card>
