@@ -1,55 +1,60 @@
 <mat-toolbar color="primary">
   <span>{{ toolBarTitle() }}</span>
   <span class="spacer"></span>
-  <button mat-icon-button aria-label="close icon">
-    <mat-icon class="icon" aria-hidden="false" aria-label="close icon"
-      >close</mat-icon
-    >
-  </button>
-</mat-toolbar>
-
-<div class="p-chats-content">
-  <div class="user-title">
-    <app-user-title name="Carlos Peralta"></app-user-title>
-  </div>
-  <mat-divider></mat-divider>
-  <div class="user-title">
-    <app-user-title name="Juancho Sanchez"></app-user-title>
-  </div>
-
-  <mat-divider></mat-divider>
-  <div class="user-title">
-    <app-user-title name="Miguel Servantes"></app-user-title>
-  </div>
-  <mat-divider></mat-divider>
-  <div class="user-title">
-    <app-user-title name="Gabriel Anastacio"></app-user-title>
-  </div>
-  <mat-divider></mat-divider>
-</div>
-
-<section class="p-2 chat">
-<div class="m2">
-  <div class="m-2">
-    <app-message userName="Rafael Pedro" content="Prueba de sistema..."></app-message>
-  </div>
-  
-  <div class="m-2">
-    <app-message userName="Rafael Pedro1" content="Prueba de sistema asdasas asdas as..."></app-message>
-  </div>
-  <div class="m-2">
-    <app-message userName="Rafael Pedro1" content="Prueba de sistema asdasas asdas as..."></app-message>
-  </div>
-</div>
-
-<form class="form">
-  <mat-form-field>
-    <textarea matInput #message placeholder="What do you want to say?"></textarea>
-    <button class="form-btn" matSuffix  align="end" mat-icon-button aria-label="close icon">
-      <mat-icon class="icon" color="primary" aria-hidden="false" aria-label="close icon"
-        >send</mat-icon
+  @if (chatOpen()) {
+    <button mat-icon-button aria-label="close icon" (click)="closeChat()">
+      <mat-icon class="icon" aria-hidden="false" aria-label="close icon"
+        >close</mat-icon
       >
     </button>
-  </mat-form-field>
-</form>
-</section>
+  }
+</mat-toolbar>
+
+@if (!chatOpen()) {
+  <section class="p-chats-content">
+    <div class="user-title" (click)="openChat()">
+      <app-user-title name="Carlos Peralta"></app-user-title>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="user-title">
+      <app-user-title name="Juancho Sanchez"></app-user-title>
+    </div>
+
+    <mat-divider></mat-divider>
+    <div class="user-title">
+      <app-user-title name="Miguel Servantes"></app-user-title>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="user-title">
+      <app-user-title name="Gabriel Anastacio"></app-user-title>
+    </div>
+    <mat-divider></mat-divider>
+  </section>
+} @else {
+  <section class="p-2 chat">
+    <div class="m2">
+      <div class="m-2">
+        <app-message userName="Rafael Pedro" content="Prueba de sistema..."></app-message>
+      </div>
+
+      <div class="m-2">
+        <app-message userName="Rafael Pedro1" content="Prueba de sistema asdasas asdas as..."></app-message>
+      </div>
+      <div class="m-2">
+        <app-message userName="Rafael Pedro1" content="Prueba de sistema asdasas asdas as..."></app-message>
+      </div>
+    </div>
+    </section>
+    <form class="form">
+      <mat-form-field>
+        <textarea matInput #message placeholder="What do you want to say?"></textarea>
+        <button class="form-btn" matSuffix  align="end" mat-icon-button aria-label="close icon">
+          <mat-icon class="icon" color="primary" aria-hidden="false" aria-label="close icon"
+            >send</mat-icon
+          >
+        </button>
+      </mat-form-field>
+    </form>
+}
+
+

@@ -31,4 +31,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class ChatComponent {
   toolBarTitle = signal('Your chats');
+  chatOpen = signal(false);
+
+  openChat(){
+    this.chatOpen.set(true);
+  }
+
+  closeChat(){
+    this.chatOpen.set(false);
+  }
 }
